@@ -5,6 +5,9 @@ import { Container, Button } from 'react-bootstrap';
 
 const MainTimerRx = () => {
 
+ // Первый опыт использования RxJs,  в основном работал с хуками
+ // Кнопку WAIT - не смог реализировать на двойной клик с задержкой.
+
     const [time, setTime] = useState(0);
     const [status, setStatus] = useState(false);
 
