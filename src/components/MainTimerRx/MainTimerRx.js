@@ -5,9 +5,6 @@ import { Container, Button } from 'react-bootstrap';
 
 const MainTimerRx = () => {
 
- // Первый опыт использования RxJs,  в основном работал с хуками
- // Кнопку WAIT - не смог реализировать на двойной клик с задержкой.
-
     const [time, setTime] = useState(0);
     const [status, setStatus] = useState(false);
 
@@ -27,6 +24,22 @@ const MainTimerRx = () => {
         };
     }, [status]);
 
+    const startDb = (e) => {
+        let timer;
+
+        const onDbBtn = (count) => {
+            if (count > 1) {
+                setStatus(false);
+            }
+        }
+            
+        if (e === 1) {
+            return;
+        } else {
+            timer = setTimeout(onDbBtn(e.detail), 300);
+            clearTimeout(timer);
+        }
+    }
 
     return (
         <Container>
@@ -34,7 +47,7 @@ const MainTimerRx = () => {
             <br />
             <Button onClick={() => setStatus(true)} variant="outline-secondary">START-RX</Button>{' '}
             <Button onClick={() => setStatus(false)} variant="outline-secondary">STOP-RX</Button>{' '}
-            <Button onDoubleClick={() => setStatus(false)} variant="outline-secondary">WAIT-RX</Button>{' '}
+            <Button onClick={(e) => startDb(e)} variant="outline-secondary">WAIT-RX</Button>{' '}
             <Button onClick={() => setTime(0)} variant="outline-secondary">RESET-RX</Button>{' '}
         </Container>
     );
